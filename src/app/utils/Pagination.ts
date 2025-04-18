@@ -1,0 +1,17 @@
+const caclucatePagination =(options:{
+    page?:number,
+    limit?:number,
+    sortOrder:string,
+    sortBy:string
+})=>{
+const page = options.page ? Number(options.page) : 1
+const limit = options.limit ? Number(options.limit) : 10
+const skip = (page - 1) * limit
+
+const sortBy = options.sortBy ? options.sortBy : 'createdAt'
+const sortOrder = options.sortOrder ? options.sortOrder : 'asc'
+
+return {page,limit,skip,sortBy,sortOrder}
+
+}
+export  default caclucatePagination
