@@ -4,7 +4,7 @@ import { PrismaClient, userRole } from "../../../../generated/prisma";
 
 const prisma = new PrismaClient()
 
-const createAdmin = async (payload) => {
+const createAdmin = async (payload:any) => {
 
     const hashedPassword = await bcrypt.hashSync(payload.password, 12);
 
