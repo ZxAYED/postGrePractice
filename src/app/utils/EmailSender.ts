@@ -22,6 +22,7 @@ const EmailSender = async (email: string,html:string) => {
     const info = await transporter.sendMail({
       from:`"Ph-HealthCare <${config.appEmail}>"`, 
       subject: "Reset Password Link ", 
+      to: email,
       text: "Hello , this is your reset password link from Ph-HealthCare.It will expire in 1 hour", 
       html:html, 
     });

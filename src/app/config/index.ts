@@ -16,9 +16,11 @@ export default {
     },
     forgot_password_token_expires_in: process.env.FORGOT_PASSWORD_TOKEN_EXPIRES_IN,
     reset_password_link: process.env.RESET_PASSWORD_LINK,
-    appPassword : process.env.APP_PASSWORD,
-    appEmail : process.env.APP_EMAIL,
-    appHost : process.env.SMTP_HOST,
-    appPort : process.env.SMTP_PORT,
-
+    appPassword: process.env.APP_PASSWORD,
+    appEmail: process.env.APP_EMAIL,
+    appHost: process.env.SMTP_HOST,
+    appPort: process.env.SMTP_PORT,
+    cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
+    cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
+    cloudinary_name: process.env.CLOUDINARY_NAME
 }

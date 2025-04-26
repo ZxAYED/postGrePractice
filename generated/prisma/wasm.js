@@ -139,6 +139,37 @@ exports.Prisma.AdminScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.DoctorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  profilePhoto: 'profilePhoto',
+  contactNumber: 'contactNumber',
+  address: 'address',
+  gender: 'gender',
+  registrationNumber: 'registrationNumber',
+  experience: 'experience',
+  appointmentFee: 'appointmentFee',
+  qualification: 'qualification',
+  currentWorkingplace: 'currentWorkingplace',
+  designation: 'designation',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PatientScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
+  profilePhoto: 'profilePhoto',
+  contactNumber: 'contactNumber',
+  address: 'address',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -166,9 +197,16 @@ exports.UserStatus = exports.$Enums.UserStatus = {
   DELETED: 'DELETED'
 };
 
+exports.Gender = exports.$Enums.Gender = {
+  male: 'male',
+  female: 'female'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
-  Admin: 'Admin'
+  Admin: 'Admin',
+  Doctor: 'Doctor',
+  Patient: 'Patient'
 };
 
 /**
