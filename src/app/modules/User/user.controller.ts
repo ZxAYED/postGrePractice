@@ -3,6 +3,7 @@ import { userService } from "./user.service";
 import catchAsync from "../../utils/CatchAsync";
 import refineQuery from "../../utils/RefineQuery";
 import { userFilterableFields } from "./user.constant";
+import { IAuthUser } from "../../types";
 
 const createAdmin =catchAsync(async (req: Request, res: Response,next:NextFunction) => {
     const result = await userService.createAdmin(req)
@@ -51,10 +52,52 @@ const getAllUsers = catchAsync (async(req: Request, res: Response,next:NextFunct
     })
 
 })
+const changeProfileStatus = catchAsync(async (req: Request, res: Response) => {
 
+    const { id } = req.params;
+    const result = await userService.changeProfileStatus(id, req.body)
+
+    res.status(200).json ({
+        
+        success: true,
+        message: "Users profile status changed!",
+        data: result
+    })
+});
+
+
+const getMyProfile = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
+
+    const user = req.user;
+
+    const result = await userService.getMyProfile(user as IAuthUser);
+
+    res.status(200).json ({
+        
+        success: true,
+        message: "My profile data fetched!",
+        data: result
+    })
+});
+
+const updateMyProfie = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
+
+    const user = req.user;
+
+    const result = await userService.updateMyProfie(user as IAuthUser, req);
+
+    res.status(200).json ({
+        
+        success: true,
+        message: "My profile updated!",
+        data: result
+    })
+});
 
 
 
 export const userController = {
-    createAdmin,createDoctor,createPatient,getAllUsers,updateUser
+    createAdmin,createDoctor,createPatient,getAllUsers,updateUser,changeProfileStatus,
+    getMyProfile,
+    updateMyProfie
 }

@@ -54,23 +54,41 @@ enum Gender {
 }
 
 model Doctor {
-  id                  String   @id @default(uuid())
+  id                  String              @id @default(uuid())
   name                String
-  email               String   @unique
-  profilePhoto        String
+  email               String              @unique
+  profilePhoto        String?
   contactNumber       String
-  address             String
-  gender              Gender
+  address             String?
   registrationNumber  String
-  experience          Int      @default(0)
+  experience          Int                 @default(0)
+  gender              Gender
   appointmentFee      Int
   qualification       String
-  currentWorkingplace String
+  currentWorkingPlace String
   designation         String
-  isDeleted           Boolean  @default(false)
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  user                User     @relation(fields: [email], references: [email])
+  isDeleted           Boolean             @default(false)
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  user                User                @relation(fields: [email], references: [email])
+  doctorSpecialties   DoctorSpecialties[]
+}
+
+model Specialties {
+  id                String              @id @default(uuid())
+  title             String
+  icon              String
+  doctorSpecialties DoctorSpecialties[]
+}
+
+model DoctorSpecialties {
+  specialitiesId String
+  specialities   Specialties @relation(fields: [specialitiesId], references: [id])
+
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
+
+  @@id([specialitiesId, doctorId])
 }
 
 model Patient {
@@ -85,6 +103,4 @@ model Patient {
   updatedAt     DateTime @updatedAt
 
   user User @relation(references: [email], fields: [email])
-
-  @@map("patients")
 }

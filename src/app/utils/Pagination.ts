@@ -1,17 +1,28 @@
-const caclucatePagination =(options:{
-    page?:number,
-    limit?:number,
-    sortOrder:string,
-    sortBy:string
-})=>{
-const page = options.page ? Number(options.page) : 1
-const limit = options.limit ? Number(options.limit) : 10
-const skip = (page - 1) * limit
+import { IPaginationOptions } from "../types";
 
-const sortBy = options.sortBy ? options.sortBy : 'createdAt'
-const sortOrder = options.sortOrder ? options.sortOrder : 'asc'
-
-return {page,limit,skip,sortBy,sortOrder}
-
+type IOptionsResult = {
+    page: number,
+    limit: number,
+    skip: number,
+    sortBy: string,
+    sortOrder: string
 }
-export  default caclucatePagination
+
+const CalculatePagination = (options: IPaginationOptions): IOptionsResult => {
+
+    const page: number = Number(options.page) || 1;
+    const limit: number = Number(options.limit) || 10;
+    const skip: number = (Number(page) - 1) * limit;
+
+    const sortBy: string = options.sortBy || 'createdAt';
+    const sortOrder: string = options.sortOrder || 'desc';
+
+    return {
+        page,
+        limit,
+        skip,
+        sortBy,
+        sortOrder
+    }
+}
+export  default CalculatePagination

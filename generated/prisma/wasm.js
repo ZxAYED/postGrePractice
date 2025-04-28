@@ -146,16 +146,27 @@ exports.Prisma.DoctorScalarFieldEnum = {
   profilePhoto: 'profilePhoto',
   contactNumber: 'contactNumber',
   address: 'address',
-  gender: 'gender',
   registrationNumber: 'registrationNumber',
   experience: 'experience',
+  gender: 'gender',
   appointmentFee: 'appointmentFee',
   qualification: 'qualification',
-  currentWorkingplace: 'currentWorkingplace',
+  currentWorkingPlace: 'currentWorkingPlace',
   designation: 'designation',
   isDeleted: 'isDeleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SpecialtiesScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  icon: 'icon'
+};
+
+exports.Prisma.DoctorSpecialtiesScalarFieldEnum = {
+  specialitiesId: 'specialitiesId',
+  doctorId: 'doctorId'
 };
 
 exports.Prisma.PatientScalarFieldEnum = {
@@ -206,6 +217,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Admin: 'Admin',
   Doctor: 'Doctor',
+  Specialties: 'Specialties',
+  DoctorSpecialties: 'DoctorSpecialties',
   Patient: 'Patient'
 };
 

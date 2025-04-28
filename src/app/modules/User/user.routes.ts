@@ -41,4 +41,26 @@ router.post('/create-patient',MulterUpload.single('profilePhoto'),
 router.get('/',Auth(userRole.SUPER_ADMIN,userRole.ADMIN),userController.getAllUsers)
 
 router.patch('/:id',Auth(userRole.SUPER_ADMIN,userRole.ADMIN),ValidateRequest(userValidation.updateUserStatusValidation),userController.updateUser)
+
+router.get(
+    '/me',
+    Auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.DOCTOR, userRole.PATIENT),
+    userController.getMyProfile
+)
+router.patch(
+    '/:id/status',
+    Auth(userRole.SUPER_ADMIN, userRole.ADMIN),
+    ValidateRequest(userValidation.updateUserStatusValidation),
+    userController.changeProfileStatus
+);
+
+router.patch(
+    "/update-my-profile",
+    Auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.DOCTOR, userRole.PATIENT),
+    MulterUpload.single('file'),
+    (req: Request, res: Response, next: NextFunction) => {
+        req.body = JSON.parse(req.body.data)
+        return userController.updateMyProfie(req, res, next)
+    }
+);
 export const userRoutes = router;
